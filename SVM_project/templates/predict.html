@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Prediction Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-image: url("{% static 'DiabetesPrediction/image3/glucose3.jpg' %}");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            font-family: 'Roboto', sans-serif;
+        }
+        .main {
+            position: fixed;
+            top: 140px;
+            left: 410px;
+            width: 550px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            align-items: center;
+            padding: 5%;
+        }
+        h1 {
+            color: #0086;
+            font-size: 30px;
+            font-weight: bold;
+        }
+        input[type=submit] {
+            background-color: #4dc3ff;
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-size: 16px;
+        }
+        .btn-medication {
+            background-color: #4dc3ff;
+            border: none;
+            color: white;
+            padding: 8px 16px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+<div class="main">
+    <h1>Please enter the following information:</h1>
+    <form action="result">
+        <table>
+            <tr>
+                <td align="right">Pregnancies:</td>
+                <td align="left"><input type="text" name="n1"></td>
+            </tr>
+            <tr>
+                <td align="right">Glucose:</td>
+                <td align="left"><input type="text" name="n2"></td>
+            </tr>
+            <tr>
+                <td align="right">Blood Pressure:</td>
+                <td align="left"><input type="text" name="n3"></td>
+            </tr>
+            <tr>
+                <td align="right">Skin Thickness:</td>
+                <td align="left"><input type="text" name="n4"></td>
+            </tr>
+            <tr>
+                <td align="right">Insulin:</td>
+                <td align="left"><input type="text" name="n5"></td>
+            </tr>
+            <tr>
+                <td align="right">BMI:</td>
+                <td align="left"><input type="text" name="n6"></td>
+            </tr>
+            <tr>
+                <td align="right">Diabetes Pedigree Function:</td>
+                <td align="left"><input type="text" name="n7"></td>
+            </tr>
+            <tr>
+                <td align="right">Age:</td>
+                <td align="left"><input type="text" name="n8"></td>
+            </tr>
+        </table>
+        <input type="submit" value="Submit">
+    </form>
+    {% if result2 %}
+    <h2>Result: {{ result2 }}</h2>
+    <div>
+        {% if result2 == "POSITIVE" %}
+        <p>Based on your inputs, it looks like you might be at risk for diabetes. <button class="btn-medication" onclick="window.location.href='{% url 'medications' %}'">View Medications and Recommendations</button></p>
+        {% else %}
+        <p>Great news! You are not at risk for diabetes based on your inputs. Keep up with a healthy lifestyle to maintain this status.</p>
+        {% endif %}
+    </div>
+    {% endif %}
+</div>
+</body>
+</html>
